@@ -12,6 +12,6 @@ export class AppComponent implements OnInit {
   constructor(private jobsActions: JobsActions) {}
 
   ngOnInit() {
-    this.jobsActions.retrieveJobs({ description: 'Python', location: 'New York'});
+    this.jobsActions.retrieveJobs({});
   }
 }

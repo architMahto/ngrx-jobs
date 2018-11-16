@@ -28,10 +28,10 @@ export class JobsEffects {
       switchMap(
         payload => this.jobsService.getJobs(payload['queryParams'])
           .pipe(
-            map(result => ActionCreatorService.createActionWithPayload(
-              JobsActions.RETRIEVE_JOBS_SUCCESS, { result }
-            )),
-            catchError(error => of(ActionCreatorService.createActionWithPayload(
+            map((result: Response) =>
+              ActionCreatorService.createActionWithPayload(JobsActions.RETRIEVE_JOBS_SUCCESS, { result: result.json() })
+            ),
+            catchError((error: Response) => of(ActionCreatorService.createActionWithPayload(
               JobsActions.RETRIEVE_JOBS_ERROR, { error: error.json() }
             )))
           )

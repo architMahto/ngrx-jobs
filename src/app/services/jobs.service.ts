@@ -15,6 +15,9 @@ export class JobsService {
   }
 
   createAPIUrl(queryParams: QueryParams): string {
+    if (Object.keys(queryParams).length < 1) {
+      return `https://jobs.github.com/positions.json`;
+    }
     return `https://jobs.github.com/positions.json?${this.createParameters(queryParams)}`;
   }
 
